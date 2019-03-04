@@ -1,38 +1,34 @@
 <h1>BURGERS!!</h1>
 
 <h2>Welcome to Create Your Own Burger</h2>
+<br>
 
+{{!-- devoured = false --}}
+<h2>Your burger is ready</h2>
 <ul>
   {{#each burgers}}
-    {{#unless devoured}}
-      {{!-- {{> cats/cat-block sleep=true}} --}}
+    {{#unless devoured }}
+    <li> {{burger_name}}</li>
+      {{!-- <button class = 'devour' data-id ="{{id}}" data-newBurger="{{devour}}">DEVOUR</button> --}}
     {{/unless}}
   {{/each}}
 </ul>
-
-<h2>Burgers Devoured!</h2>
-
+{{!-- devoured = true --}}
+<h2>That burger was amazing!!</h2>
 <ul>
   {{#each burgers}}
-    {{#if devoured}}
-      {{!-- {{> cats/cat-block sleep=false}} --}}
+    {{#if devoured }}
+	    <li>{{burger_name}}</li>
     {{/if}}
   {{/each}}
 </ul>
 
+
 <h2>Your Order</h2>
 <form class="create-form">
-
   <div class="form-group">
-    <label for="ca">Your Burger Order:</label>
-    <input type="text" id="ca" name="name">
+    <label for="burgerName">What is the name of your burger?</label>
+    <input type="text" id="burgerName" name="name">
   </div>
-
-  <div class="form-group">
-    <label for="devoured">Hungry?</label><br>
-    <input type="radio" name="devoured" value="1" checked> Eat Here <br>
-    <input type="radio" name="devoured" value="0"> Take Home
-  </div>
-
   <button type="submit">Add to Order</button>
 </form>
