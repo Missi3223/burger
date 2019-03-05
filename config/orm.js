@@ -1,9 +1,5 @@
 // requires connection to connection.js file (MySQL)
-var connection = require ("../config/connection.js");
-
-// selectAll (); looks at entire table
-// insertOne (); creates/insets new information for the DB
-// updateOne (); Updates the DB with all new information
+var connection = require ("./connection.js");
 
 // Helper function for SQL syntax.
 // Let's say we want to pass 3 values into the mySQL query.
@@ -26,35 +22,30 @@ function objToSql(ob) {
 
   // loop through the keys and push the key/value as a string int arr
   for (var key in ob) {
-    var value = ob[key];
-    // check to skip hidden properties
-    if (Object.hasOwnProperty.call(ob, key)) {
-      // if string with spaces, add quotations (Double Cheeseburger => 'Double Cheeseburger')
-      if (typeof value === "string" && value.indexOf(" ") >= 0) {
-        value = "'" + value + "'";
-      }
-      // e.g. {burger_name: 'Double Cheeseburger'} => ["burger_name='Double Cheeseburger'"]
-      // e.g. {devoured: true} => ["devoured=true"]
-      arr.push(key + "=" + value);
+    
+      arr.push(key + "=" + ob[key]);
     }
+     // translate array of strings to a single comma-separated string
+    return arr.toString();
   }
 
-  // translate array of strings to a single comma-separated string
-  return arr.toString();
-}
-
-// Object for all our SQL statement functions. cb = callback
+// Object for all our SQL queries
 var orm = {
   selectAll: function(tableInput, cb) {
+    // Returns a string for all rows in table
     var queryString = "SELECT * FROM " + tableInput + ";";
+    //  Perform the query
     connection.query(queryString, function(err, result) {
       if (err) {
         throw err;
       }
+      // callback results
       cb(result);
     });
   },
-  createOne: function(table, cols, vals, cb) {
+
+  // This function with create a single table entry
+  insertOne: function(table, cols, vals, cb) {
     var queryString = "INSERT INTO " + table;
 
     queryString += " (";
@@ -70,11 +61,11 @@ var orm = {
       if (err) {
         throw err;
       }
-
+      // callback results
       cb(result);
     });
   },
-  // An example of objColVals would be {name: panther, devoured: true}
+  // This function will updatethe table with new entry
   updateOne: function(table, objColVals, condition, cb) {
     var queryString = "UPDATE " + table;
 
@@ -84,6 +75,7 @@ var orm = {
     queryString += condition;
 
     console.log(queryString);
+
     connection.query(queryString, function(err, result) {
       if (err) {
         throw err;

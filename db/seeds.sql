@@ -1,9 +1,13 @@
 SELECT * FROM burgers_db.burgers;
-INSERT INTO burgers (burger_name, devoured)
-VALUES ("The Final Kraut Down Burger", 0);
 
 INSERT INTO burgers (burger_name, devoured)
-VALUES ("Humpty Dumpty Burger", 1);
+VALUES (" Final Kraut Down Burger", false);
 
 INSERT INTO burgers (burger_name, devoured)
-VALUES ("Killer Burger", 0);
+VALUES (" Humpty Dumpty Burger",true );
+
+INSERT INTO burgers (burger_name, devoured)
+VALUES (" Killer Burger", false);
+
+INSERT INTO burgers (burger_name, devoured)
+VALUES (" I Fought the Slaw Burger (and the Slaw Won)", true);

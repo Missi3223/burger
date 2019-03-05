@@ -1,7 +1,9 @@
--- Create a database called programming_db --
+-- Create a database 
+-- DROP DATABASE burgers_db;
+
 CREATE DATABASE burgers_db;
 
-USE burgers_db;
+-- USE burgers_db;
 
 CREATE TABLE burgers
 (
