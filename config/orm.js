@@ -1,12 +1,12 @@
 // requires connection to connection.js file (MySQL)
-var connection = require ("./connection.js");
+var connection = require ("../config/connection.js");
 
 // Helper function for SQL syntax.
 // Let's say we want to pass 3 values into the mySQL query.
 // In order to write the query, we need 3 question marks.
 // The above helper function loops through and creates an array of question marks - ["?", "?", "?"] - and turns it into a string.
 // ["?", "?", "?"].toString() => "?,?,?";
-function printQuestionMarks(num) {
+function questionMarks(num) {
   var arr = [];
 
   for (var i = 0; i < num; i++) {
@@ -17,23 +17,30 @@ function printQuestionMarks(num) {
 }
 
 // Helper function to convert object key/value pairs to SQL syntax
-function objToSql(ob) {
+function objToSql(object) {
   var arr = [];
 
   // loop through the keys and push the key/value as a string int arr
-  for (var key in ob) {
-    
-      arr.push(key + "=" + ob[key]);
+  for (var key in object) {
+    var value = object[key];
+    // check to skip hidden properties
+    if (Object.hasOwnProperty.call(object, key)) {
+        // if string with spaces, add quotations (Lana Del Grey => 'Lana Del Grey')
+        if (typeof value === "string" && value.indexOf(" ") >= 0) {
+            value = "'" + value + "'";
+        }
+        arr.push(key + "=" + value);
     }
      // translate array of strings to a single comma-separated string
     return arr.toString();
   }
+}
 
 // Object for all our SQL queries
 var orm = {
-  selectAll: function(tableInput, cb) {
+  selectAll: function(tableName, cb) {
     // Returns a string for all rows in table
-    var queryString = "SELECT * FROM " + tableInput + ";";
+    let queryString = "SELECT * FROM " + tableName + ";";
     //  Perform the query
     connection.query(queryString, function(err, result) {
       if (err) {
@@ -41,33 +48,35 @@ var orm = {
       }
       // callback results
       cb(result);
+      console.log("'all' queryString", queryString)
     });
   },
 
   // This function with create a single table entry
-  insertOne: function(table, cols, vals, cb) {
-    var queryString = "INSERT INTO " + table;
+  insertOne: function(tableName, columns, values, cb) {
+    let queryString = "INSERT INTO " + tableName;
 
     queryString += " (";
-    queryString += cols.toString();
+    queryString += columns.toString();
     queryString += ") ";
     queryString += "VALUES (";
-    queryString += printQuestionMarks(vals.length);
+    queryString += questionMarks(values.length);
     queryString += ") ";
 
     console.log(queryString);
 
-    connection.query(queryString, vals, function(err, result) {
+    connection.query(queryString, values, function(err, result) {
       if (err) {
         throw err;
       }
       // callback results
       cb(result);
+      console.log("'Create' queryString: ", queryString);
     });
   },
   // This function will updatethe table with new entry
-  updateOne: function(table, objColVals, condition, cb) {
-    var queryString = "UPDATE " + table;
+  updateOne: function(tableName, objColVals, condition, cb) {
+    var queryString = "UPDATE " + tableName;
 
     queryString += " SET ";
     queryString += objToSql(objColVals);
@@ -82,6 +91,7 @@ var orm = {
       }
 
       cb(result);
+      console.log("'Update' queryString: ", queryString);
     });
   },
  };
