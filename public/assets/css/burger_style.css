@@ -6,21 +6,12 @@ html {
     background-color: #FFC04C;
 }
 
-body {
-    width: 75%;
-   margin: 0 auto; 
-
-   display: flex;
-   min-height: 100vh;
-   flex-direction: column;
-   background-color: white;
-}
-
-h1 {
-    text-align: center;
-    font-family: 'Fontdiner Swanky', cursive;
-    font-size: 65px;
-    margin: 50px;
+.body {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
 }
 
 .devour {
@@ -45,7 +36,7 @@ h1 {
     font-family: 'Crafty Girls', cursive;
     font-weight: normal;
     font-size: 20px;
-    text-align: center;
+    border-radius: 25px;
     background-color: #ffd1c9;
 }
 
@@ -56,12 +47,8 @@ h2 {
     margin: 50px;
 }
 
-.formContainer {
-    background-color: orange;
-}
-
-.form-group{
-    align-content: center;
+.create-form{
+    text-align: center;
     font-family: 'Crafty Girls', cursive;
     font-weight: normal;
     font-size: 20px;
@@ -75,6 +62,6 @@ h2 {
 }
 
 .burgerFooter {
-   background-color: #FFC04C;
+   background-color: rgb(119, 86, 24);
    padding: 20px 0;
 }

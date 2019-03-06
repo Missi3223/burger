@@ -1,3 +1,4 @@
+<div class = "body">
 <div class = "header" align = "center">
   <br>
     <h2>Welcome to Create Your Own Burger</h2>
@@ -7,26 +8,26 @@
 </div>
 <div class = "row" >
   <div class = "card col s12">
-    <div class = "col s6"  >
+    <div class = "col s5 "  >
   
-      <h2>Your burger is ready</h2>
+      <h2>Devour</h2>
         <ul>
           {{#each burgers}}
           {{#unless this.devoured }}
           <li>
-            <button  class ="devour" data-id = "{{id}}"data-newDevour = "{{devoured}}"><span >Devour the {{burger_name}}! </span></button>
+            <button class ="devour" data-id = "{{id}}"data-newDevour = "{{devoured}}"><span >Devour The {{burger_name}}! </span></button>
           </li>
           {{/unless}}
           {{/each}}
         </ul>
     </div>
-
-    <div class = "col s6" id ="burgerEaten" >
+    <div class = "col s2"></div>
+    <div class = "col s5 " id ="burgerEaten" >
       <h2>Yummy!!</h2>
         {{#each burgers}}
         {{#if this.devoured }}
           <li>
-	          {{burger_name}}
+	          {{burger_name}}<br>
           </li>
         {{/if}}
         {{/each}}
@@ -46,5 +47,14 @@
     <button type="submit" class ="addBurger">Add to Order</button>
     </form>
   </div>
-</div>  
+</div>
+</div> 
+<footer class="burgerFooter">
+		<div class="footer-copyright">
+			<div class="container">
+				<span class="grey-text text-lighten-4"> © 2019 Copyright Melissa Stringer</span>
+				<a class="grey-text text-lighten-4 right" href="https://github.com/missi3223">Reference Work</a>
+			</div>
+		</div>
+	</footer> 
 
