@@ -1,6 +1,6 @@
 # Node Express Handlebars - "Eat-Da-Burger"
 
-[Use this link to use the app]([https://youtu.be/msvdn95x9OM](https://afternoon-dawn-18457.herokuapp.com/))
+[Use this link to use the app](https://afternoon-dawn-18457.herokuapp.com/)
 
 ### Before You Begin
 
