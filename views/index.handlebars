@@ -1,60 +1,65 @@
-<div class = "body">
-<div class = "header" align = "center">
-  <br>
+<div class="container">
+  <div class="header" align="center">
+    <br>
+    <br>
     <h2>Welcome to Create Your Own Burger</h2>
-  <br>
+    <br>
+    <br>
     <img src="/assets/img/Cheeseburger.jpg" width="400px" id="burgerImg">
+    <br>
+    <br>
+  </div>
+  <div class="row">
+    <div class="card col s12">
+      <div class="col s5 ">
 
-</div>
-<div class = "row" >
-  <div class = "card col s12">
-    <div class = "col s5 "  >
-  
-      <h2>Devour</h2>
+        <h2>Devour</h2>
         <ul>
           {{#each burgers}}
           {{#unless this.devoured }}
           <li>
-            <button class ="devour" data-id = "{{id}}"data-newDevour = "{{devoured}}"><span >Devour The {{burger_name}}! </span></button>
+            <button class="devour" data-id="{{id}}" data-newDevour="{{devoured}}"><span>Devour The {{burger_name}}!
+              </span></button>
           </li>
           {{/unless}}
           {{/each}}
         </ul>
-    </div>
-    <div class = "col s2"></div>
-    <div class = "col s5 " id ="burgerEaten" >
-      <h2>Yummy!!</h2>
+      </div>
+      <div class="col s2"></div>
+      <div class="col s5 " id="burgerEaten">
+        <h2>Yummy!!</h2>
         {{#each burgers}}
         {{#if this.devoured }}
-          <li>
-	          {{burger_name}}<br>
-          </li>
+        <li>
+          {{burger_name}}<br>
+        </li>
         {{/if}}
         {{/each}}
         <br>
+      </div>
     </div>
   </div>
-</div>
-
-<div class="row">
-  <div class="card card-panel hoverable">
-    <h2 class="center-align">Add a Burger!</h2>
-    <form class = "create-form">
-      <div class = "form-group">
-        <label for="burgerName" class ="center-align">What is the name of your burger?</label>
-        <input type="text" id="burgerName" >
-      </div>
-    <button type="submit" class ="addBurger">Add to Order</button>
-    </form>
+  <br>
+  <div class="row">
+    <div class="card card-panel hoverable">
+      <h2 class="center-align">Add a Burger!</h2>
+      <form class="create-form">
+        <div class="form-group">
+          <br>
+          <label for="burgerName" class="center-align">What is the name of your burger?</label>
+          <input type="text" id="burgerName">
+        </div>
+        <br>
+        <button type="submit" class="addBurger">Add to Order</button>
+      </form>
+    </div>
   </div>
+  <br>
 </div>
-</div> 
 <footer class="burgerFooter">
-		<div class="footer-copyright">
-			<div class="container">
-				<span class="grey-text text-lighten-4"> © 2019 Copyright Melissa Stringer</span>
-				<a class="grey-text text-lighten-4 right" href="https://github.com/missi3223">Reference Work</a>
-			</div>
-		</div>
-	</footer> 
-
+  <div class="footer-copyright">
+      <span class="grey-text text-lighten-4">      © 2019 Copyright Melissa Stringer</span>
+      <a class="grey-text text-lighten-4 right" href="https://github.com/missi3223">Reference Work   <i class="fab fa-github-square"></i></a>
+      
+  </div>
+</footer>
