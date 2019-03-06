@@ -1,9 +1,9 @@
 -- Create a database 
--- DROP DATABASE burgers_db;
+DROP DATABASE burgers_db;
 
 CREATE DATABASE burgers_db;
 
--- USE burgers_db;
+USE DATABASE burgers_db;
 
 CREATE TABLE burgers
 (
